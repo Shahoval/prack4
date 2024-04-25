@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Website</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            color: black; /* Колір тексту за замовчуванням */
+        }
+
+        #logoContainer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        #description {
+            color: black; /* Колір тексту за замовчуванням */
+        }
+
+        .dark-mode #description {
+            color: white; /* Колір тексту у темному режимі */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var username = prompt("Введіть ваше ім'я:");
+        if (username) {
+            alert("Ласкаво просимо, " + username + "!");
+        } else {
+            alert("Ласкаво просимо!");
+        }
+    </script>
+    <div id="logoContainer">
+        <img id="firefoxLogo" src="images/firefox.png" alt="Firefox Logo" onclick="toggleLogo()">
+        <img id="chromeLogo" src="images/chrome.png" alt="Chrome Logo" onclick="toggleLogo()" class="hidden">
+        <p id="description">Mozilla Firefox — вільний веб-переглядач, що розробляється фондом Mozilla.</p>
+    </div>
+    <button onclick="toggleTheme()" id="themeButton">Змінити тему</button>
+    <script>
+        var isDay = true;
+
+        function toggleTheme() {
+            var body = document.body;
+            var description = document.getElementById('description');
+            var themeButton = document.getElementById('themeButton');
+
+            if (isDay) {
+                body.classList.add('dark-mode');
+                description.style.color = 'white'; // Змінити колір тексту на білий у темному режимі
+                themeButton.style.color = 'white'; // Змінити колір тексту кнопки на білий у темному режимі
+            } else {
+                body.classList.remove('dark-mode');
+                description.style.color = 'black'; // Повернути колір тексту на чорний у світлому режимі
+                themeButton.style.color = 'black'; // Повернути колір тексту кнопки на чорний у світлому режимі
+            }
+
+            isDay = !isDay;
+        }
+
+        var isFirefox = true;
+
+        function toggleLogo() {
+            var firefoxLogo = document.getElementById('firefoxLogo');
+            var chromeLogo = document.getElementById('chromeLogo');
+            var description = document.getElementById('description');
+
+            if (isFirefox) {
+                firefoxLogo.classList.add('hidden');
+                chromeLogo.classList.remove('hidden');
+                description.textContent = 'Google Chrome — швидкий та надійний веб-переглядач, розроблений компанією Google.';
+            } else {
+                firefoxLogo.classList.remove('hidden');
+                chromeLogo.classList.add('hidden');
+                description.textContent = 'Mozilla Firefox — вільний веб-переглядач, що розробляється фондом Mozilla.';
+            }
+
+            isFirefox = !isFirefox;
+        }
+    </script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
